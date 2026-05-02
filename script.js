@@ -56,35 +56,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Efecto de aparición suave al hacer scroll (Reveal)
-    const cards = document.querySelectorAll('.card');
+    // Efecto de aparición suave al hacer scroll (Reveal avanzado)
+    const revealElements = document.querySelectorAll('.card, .section-title, .section-subtitle, .faq-item, .filter-container');
     
-    const revealCards = () => {
-        const triggerBottom = window.innerHeight / 5 * 4;
+    const revealElementsOnScroll = () => {
+        const triggerBottom = window.innerHeight / 5 * 4.5;
         
-        cards.forEach((card, index) => {
-            const cardTop = card.getBoundingClientRect().top;
+        revealElements.forEach((el, index) => {
+            const elTop = el.getBoundingClientRect().top;
             
-            if(cardTop < triggerBottom) {
-                // Añadimos un pequeño retraso para efecto cascada
+            if(elTop < triggerBottom) {
+                const delay = el.classList.contains('card') ? (index % 6) * 100 : 0;
                 setTimeout(() => {
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, index * 100);
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, delay);
             }
         });
     };
 
     // Configuración inicial de las tarjetas para la animación
-    cards.forEach(card => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(50px)';
-        card.style.transition = 'all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1)';
+    revealElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(50px)';
+        el.style.transition = 'all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1)';
     });
 
     // Ejecutar en scroll y en carga inicial
-    window.addEventListener('scroll', revealCards);
-    revealCards();
+    window.addEventListener('scroll', revealElementsOnScroll);
+    revealElementsOnScroll();
 
     // --- NUEVAS FUNCIONALIDADES INTERACTIVAS ---
 
@@ -181,5 +181,60 @@ document.addEventListener('DOMContentLoaded', () => {
             item.classList.toggle('active');
         });
     });
+
+    // 4. Filtros de Plataformas
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const serviceCards = document.querySelectorAll('#services-grid .card');
+
+    if (filterBtns.length > 0) {
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remover active de todos
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Añadir active al clickeado
+                btn.classList.add('active');
+                
+                const filterValue = btn.getAttribute('data-filter');
+                
+                serviceCards.forEach(card => {
+                    // Animación de salida
+                    card.style.opacity = '0';
+                    card.style.transform = 'scale(0.8)';
+                    
+                    setTimeout(() => {
+                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                            card.style.display = 'flex';
+                            // Animación de entrada
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'scale(1) translateY(0)';
+                            }, 50);
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    }, 300); // Esperar a que termine la transición CSS
+                });
+            });
+        });
+    }
+
+    // 5. Botón Volver Arriba
+    const backToTopBtn = document.getElementById('backToTop');
+    if (backToTopBtn) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
 
 });
