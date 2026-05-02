@@ -43,11 +43,11 @@
         <section id="inicio" class="hero">
             <div class="hero-content">
                 <span class="badge">Disfruta sin límites</span>
-                <h1>El Mejor Entretenimiento <br>en <span class="text-gradient">Tus Manos</span></h1>
+                <h1>El Mejor Entretenimiento <br>en <span class="text-gradient typing-text"></span><span class="typing-cursor">|</span></h1>
                 <p>Accede a las plataformas de streaming más populares con los mejores precios del mercado. Activación rápida y soporte 24/7.</p>
                 <div class="hero-buttons">
                     <a href="#servicios" class="btn btn-primary">Ver Catálogo</a>
-                    <a href="https://wa.me/1234567890" target="_blank" class="btn btn-secondary">
+                    <a href="https://w.app/5qpzx0" target="_blank" class="btn btn-secondary">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
                         Escribir ahora
                     </a>
@@ -62,12 +62,23 @@
             <h2 class="section-title">Nuestros Servicios</h2>
             <p class="section-subtitle">Elige tu plataforma favorita y empieza a disfrutar hoy mismo.</p>
             
+            <div class="pricing-toggle-container">
+                <span class="toggle-label active" id="label-monthly">1 Mes</span>
+                <label class="switch">
+                    <input type="checkbox" id="pricingToggle">
+                    <span class="slider round"></span>
+                </label>
+                <span class="toggle-label" id="label-quarterly">3 Meses <span class="discount-badge">Ahorra 15%</span></span>
+            </div>
+            
             <div class="cards-grid">
                 <!-- Tarjeta 1 -->
-                <div class="card glass-panel">
+                <div class="card glass-panel hover-glow">
                     <div class="card-header bg-netflix">
                         <h3>Netflix</h3>
-                        <span class="price">$XX.XX</span>
+                        <div class="price-container">
+                            <span class="price" data-monthly="$5.00" data-quarterly="$12.75">$5.00</span><span class="period">/mes</span>
+                        </div>
                     </div>
                     <div class="card-body">
                         <ul>
@@ -75,15 +86,17 @@
                             <li>✓ Pantallas Múltiples</li>
                             <li>✓ Soporte Completo</li>
                         </ul>
-                        <a href="https://wa.me/1234567890?text=Hola,%20me%20interesa%20el%20servicio%20de%20Netflix" class="btn btn-outline" target="_blank">Comprar ahora</a>
+                        <a href="https://w.app/5qpzx0" class="btn btn-outline" target="_blank">Comprar ahora</a>
                     </div>
                 </div>
 
                 <!-- Tarjeta 2 -->
-                <div class="card glass-panel">
+                <div class="card glass-panel hover-glow">
                     <div class="card-header bg-spotify">
                         <h3>Spotify</h3>
-                        <span class="price">$XX.XX</span>
+                        <div class="price-container">
+                            <span class="price" data-monthly="$3.00" data-quarterly="$7.65">$3.00</span><span class="period">/mes</span>
+                        </div>
                     </div>
                     <div class="card-body">
                         <ul>
@@ -91,15 +104,17 @@
                             <li>✓ Escucha offline</li>
                             <li>✓ Calidad de audio premium</li>
                         </ul>
-                        <a href="https://wa.me/1234567890?text=Hola,%20me%20interesa%20el%20servicio%20de%20Spotify" class="btn btn-outline" target="_blank">Comprar ahora</a>
+                        <a href="https://w.app/5qpzx0" class="btn btn-outline" target="_blank">Comprar ahora</a>
                     </div>
                 </div>
 
                 <!-- Tarjeta 3 -->
-                <div class="card glass-panel">
+                <div class="card glass-panel hover-glow">
                     <div class="card-header bg-prime">
                         <h3>Prime Video</h3>
-                        <span class="price">$XX.XX</span>
+                        <div class="price-container">
+                            <span class="price" data-monthly="$4.00" data-quarterly="$10.20">$4.00</span><span class="period">/mes</span>
+                        </div>
                     </div>
                     <div class="card-body">
                         <ul>
@@ -107,15 +122,17 @@
                             <li>✓ Películas exclusivas</li>
                             <li>✓ Calidad 4K HDR</li>
                         </ul>
-                        <a href="https://wa.me/1234567890?text=Hola,%20me%20interesa%20el%20servicio%20de%20Prime%20Video" class="btn btn-outline" target="_blank">Comprar ahora</a>
+                        <a href="https://w.app/5qpzx0" class="btn btn-outline" target="_blank">Comprar ahora</a>
                     </div>
                 </div>
 
                 <!-- Tarjeta 4 -->
-                <div class="card glass-panel">
+                <div class="card glass-panel hover-glow">
                     <div class="card-header bg-max">
                         <h3>HBO Max</h3>
-                        <span class="price">$XX.XX</span>
+                        <div class="price-container">
+                            <span class="price" data-monthly="$4.00" data-quarterly="$10.20">$4.00</span><span class="period">/mes</span>
+                        </div>
                     </div>
                     <div class="card-body">
                         <ul>
@@ -123,15 +140,17 @@
                             <li>✓ Estrenos de cine</li>
                             <li>✓ Hasta 3 pantallas</li>
                         </ul>
-                        <a href="https://wa.me/1234567890?text=Hola,%20me%20interesa%20el%20servicio%20de%20Max" class="btn btn-outline" target="_blank">Comprar ahora</a>
+                        <a href="https://w.app/5qpzx0" class="btn btn-outline" target="_blank">Comprar ahora</a>
                     </div>
                 </div>
 
                 <!-- Tarjeta 5 -->
-                <div class="card glass-panel">
+                <div class="card glass-panel hover-glow">
                     <div class="card-header bg-disney">
                         <h3>Disney+</h3>
-                        <span class="price">$XX.XX</span>
+                        <div class="price-container">
+                            <span class="price" data-monthly="$4.50" data-quarterly="$11.45">$4.50</span><span class="period">/mes</span>
+                        </div>
                     </div>
                     <div class="card-body">
                         <ul>
@@ -139,15 +158,17 @@
                             <li>✓ Estrenos exclusivos</li>
                             <li>✓ Perfiles infantiles</li>
                         </ul>
-                        <a href="https://wa.me/1234567890?text=Hola,%20me%20interesa%20el%20servicio%20de%20Disney+" class="btn btn-outline" target="_blank">Comprar ahora</a>
+                        <a href="https://w.app/5qpzx0" class="btn btn-outline" target="_blank">Comprar ahora</a>
                     </div>
                 </div>
 
                 <!-- Tarjeta 6 -->
-                <div class="card glass-panel">
+                <div class="card glass-panel hover-glow">
                     <div class="card-header bg-paramount">
                         <h3>Paramount+</h3>
-                        <span class="price">$XX.XX</span>
+                        <div class="price-container">
+                            <span class="price" data-monthly="$3.50" data-quarterly="$8.90">$3.50</span><span class="period">/mes</span>
+                        </div>
                     </div>
                     <div class="card-body">
                         <ul>
@@ -155,7 +176,184 @@
                             <li>✓ Deportes en vivo</li>
                             <li>✓ Series originales</li>
                         </ul>
-                        <a href="https://wa.me/1234567890?text=Hola,%20me%20interesa%20el%20servicio%20de%20Paramount+" class="btn btn-outline" target="_blank">Comprar ahora</a>
+                        <a href="https://w.app/5qpzx0" class="btn btn-outline" target="_blank">Comprar ahora</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonios" class="testimonials">
+            <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+            <p class="section-subtitle">Únete a cientos de usuarios satisfechos.</p>
+            
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <!-- Originales -->
+                    <div class="testimonial-card glass-panel">
+                        <div class="user-info">
+                            <div class="avatar" style="background-color: #ffb703;">C</div>
+                            <div class="user-details">
+                                <h4>Carlos M.</h4>
+                                <span class="stars">★★★★★</span>
+                            </div>
+                        </div>
+                        <p class="review-text">"Excelente servicio, la cuenta de Netflix me la entregaron en 5 minutos y funciona perfecto en mi TV."</p>
+                    </div>
+                    <div class="testimonial-card glass-panel">
+                        <div class="user-info">
+                            <div class="avatar" style="background-color: #8b5cf6;">A</div>
+                            <div class="user-details">
+                                <h4>Ana G.</h4>
+                                <span class="stars">★★★★★</span>
+                            </div>
+                        </div>
+                        <p class="review-text">"Siempre compro aquí mis cuentas. El combo de Disney y Max me salió súper barato y el soporte siempre responde."</p>
+                    </div>
+                    <div class="testimonial-card glass-panel">
+                        <div class="user-info">
+                            <div class="avatar" style="background-color: #219ebc;">D</div>
+                            <div class="user-details">
+                                <h4>Diego R.</h4>
+                                <span class="stars">★★★★★</span>
+                            </div>
+                        </div>
+                        <p class="review-text">"Muy confiables. Compré Spotify para 3 meses y no he tenido caídas ni interrupciones."</p>
+                    </div>
+                    <!-- Nuevos -->
+                    <div class="testimonial-card glass-panel">
+                        <div class="user-info">
+                            <div class="avatar" style="background-color: #e63946;">L</div>
+                            <div class="user-details">
+                                <h4>Laura P.</h4>
+                                <span class="stars">★★★★★</span>
+                            </div>
+                        </div>
+                        <p class="review-text">"Súper rápido y seguro. Prime Video me funciona de maravilla y en 4K. Recomendadísimos."</p>
+                    </div>
+                    <div class="testimonial-card glass-panel">
+                        <div class="user-info">
+                            <div class="avatar" style="background-color: #2a9d8f;">M</div>
+                            <div class="user-details">
+                                <h4>Miguel T.</h4>
+                                <span class="stars">★★★★★</span>
+                            </div>
+                        </div>
+                        <p class="review-text">"Tenía mis dudas al principio, pero me entregaron la cuenta al instante. Ya soy cliente fijo."</p>
+                    </div>
+                    <div class="testimonial-card glass-panel">
+                        <div class="user-info">
+                            <div class="avatar" style="background-color: #e07a5f;">S</div>
+                            <div class="user-details">
+                                <h4>Sofía L.</h4>
+                                <span class="stars">★★★★★</span>
+                            </div>
+                        </div>
+                        <p class="review-text">"Llevo 6 meses renovando mis plataformas aquí y la atención por WhatsApp siempre es de primera."</p>
+                    </div>
+                    <!-- Duplicados para el efecto de scroll infinito suave -->
+                    <div class="testimonial-card glass-panel">
+                        <div class="user-info">
+                            <div class="avatar" style="background-color: #ffb703;">C</div>
+                            <div class="user-details">
+                                <h4>Carlos M.</h4>
+                                <span class="stars">★★★★★</span>
+                            </div>
+                        </div>
+                        <p class="review-text">"Excelente servicio, la cuenta de Netflix me la entregaron en 5 minutos y funciona perfecto en mi TV."</p>
+                    </div>
+                    <div class="testimonial-card glass-panel">
+                        <div class="user-info">
+                            <div class="avatar" style="background-color: #8b5cf6;">A</div>
+                            <div class="user-details">
+                                <h4>Ana G.</h4>
+                                <span class="stars">★★★★★</span>
+                            </div>
+                        </div>
+                        <p class="review-text">"Siempre compro aquí mis cuentas. El combo de Disney y Max me salió súper barato y el soporte siempre responde."</p>
+                    </div>
+                    <div class="testimonial-card glass-panel">
+                        <div class="user-info">
+                            <div class="avatar" style="background-color: #219ebc;">D</div>
+                            <div class="user-details">
+                                <h4>Diego R.</h4>
+                                <span class="stars">★★★★★</span>
+                            </div>
+                        </div>
+                        <p class="review-text">"Muy confiables. Compré Spotify para 3 meses y no he tenido caídas ni interrupciones."</p>
+                    </div>
+                    <div class="testimonial-card glass-panel">
+                        <div class="user-info">
+                            <div class="avatar" style="background-color: #e63946;">L</div>
+                            <div class="user-details">
+                                <h4>Laura P.</h4>
+                                <span class="stars">★★★★★</span>
+                            </div>
+                        </div>
+                        <p class="review-text">"Súper rápido y seguro. Prime Video me funciona de maravilla y en 4K. Recomendadísimos."</p>
+                    </div>
+                    <div class="testimonial-card glass-panel">
+                        <div class="user-info">
+                            <div class="avatar" style="background-color: #2a9d8f;">M</div>
+                            <div class="user-details">
+                                <h4>Miguel T.</h4>
+                                <span class="stars">★★★★★</span>
+                            </div>
+                        </div>
+                        <p class="review-text">"Tenía mis dudas al principio, pero me entregaron la cuenta al instante. Ya soy cliente fijo."</p>
+                    </div>
+                    <div class="testimonial-card glass-panel">
+                        <div class="user-info">
+                            <div class="avatar" style="background-color: #e07a5f;">S</div>
+                            <div class="user-details">
+                                <h4>Sofía L.</h4>
+                                <span class="stars">★★★★★</span>
+                            </div>
+                        </div>
+                        <p class="review-text">"Llevo 6 meses renovando mis plataformas aquí y la atención por WhatsApp siempre es de primera."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="faq-section">
+            <h2 class="section-title">Preguntas Frecuentes</h2>
+            <p class="section-subtitle">Resolvemos tus dudas al instante.</p>
+            
+            <div class="faq-container">
+                <div class="faq-item glass-panel">
+                    <button class="faq-question">
+                        <span>¿Cuánto tiempo tardan en entregar la cuenta?</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="chevron"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>La entrega es casi inmediata. Una vez confirmado el pago, te enviaremos los datos de acceso (correo y contraseña) a través de WhatsApp o Telegram en un lapso máximo de 5 a 15 minutos.</p>
+                    </div>
+                </div>
+                <div class="faq-item glass-panel">
+                    <button class="faq-question">
+                        <span>¿Las cuentas tienen garantía?</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="chevron"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>¡Sí! Todos nuestros servicios cuentan con garantía por el tiempo contratado. Si hay algún problema, nuestro equipo de soporte te lo solucionará o cambiará la cuenta rápidamente.</p>
+                    </div>
+                </div>
+                <div class="faq-item glass-panel">
+                    <button class="faq-question">
+                        <span>¿Puedo renovar mi cuenta el mes siguiente?</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="chevron"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>En la mayoría de los casos sí puedes renovar la misma cuenta para no perder tu historial. Te notificaremos unos días antes de que venza para que puedas hacerlo sin cortes.</p>
+                    </div>
+                </div>
+                <div class="faq-item glass-panel">
+                    <button class="faq-question">
+                        <span>¿Cuáles son los métodos de pago?</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="chevron"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Aceptamos múltiples métodos de pago dependiendo de tu país (Transferencias bancarias locales, PayPal, Binance, Criptomonedas, entre otros). ¡Consulta en el chat!</p>
                     </div>
                 </div>
             </div>
@@ -186,7 +384,7 @@
 
     <!-- Floating Action Buttons -->
     <div class="floating-buttons">
-        <a href="https://wa.me/1234567890" class="float-btn whatsapp" target="_blank" aria-label="Chat en WhatsApp">
+        <a href="https://w.app/5qpzx0" class="float-btn whatsapp" target="_blank" aria-label="Chat en WhatsApp">
             <svg width="30" height="30" viewBox="0 0 24 24" fill="#ffffff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
         </a>
         <a href="https://t.me/TuBotAca" class="float-btn telegram" target="_blank" aria-label="Chat en Telegram">

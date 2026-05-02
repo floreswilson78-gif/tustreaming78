@@ -85,4 +85,101 @@ document.addEventListener('DOMContentLoaded', () => {
     // Ejecutar en scroll y en carga inicial
     window.addEventListener('scroll', revealCards);
     revealCards();
+
+    // --- NUEVAS FUNCIONALIDADES INTERACTIVAS ---
+
+    // 1. Efecto Typing (Escritura)
+    const typingText = document.querySelector('.typing-text');
+    if (typingText) {
+        const words = ['Tus Manos', 'Tu Smart TV', 'Tu Celular', 'Tu PC'];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        
+        function type() {
+            const currentWord = words[wordIndex];
+            
+            if (isDeleting) {
+                typingText.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingText.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+            
+            let typeSpeed = 100;
+            if (isDeleting) typeSpeed /= 2;
+            
+            if (!isDeleting && charIndex === currentWord.length) {
+                typeSpeed = 2000; // Pausa al terminar de escribir
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                typeSpeed = 500; // Pausa antes de empezar a escribir
+            }
+            
+            setTimeout(type, typeSpeed);
+        }
+        
+        // Iniciar efecto
+        setTimeout(type, 1000);
+    }
+
+    // 2. Toggle de Precios
+    const pricingToggle = document.getElementById('pricingToggle');
+    const prices = document.querySelectorAll('.price');
+    const labelMonthly = document.getElementById('label-monthly');
+    const labelQuarterly = document.getElementById('label-quarterly');
+    
+    if (pricingToggle) {
+        pricingToggle.addEventListener('change', () => {
+            if (pricingToggle.checked) {
+                // Modo Trimestral
+                labelMonthly.classList.remove('active');
+                labelQuarterly.classList.add('active');
+                prices.forEach(price => {
+                    price.style.opacity = 0;
+                    setTimeout(() => {
+                        price.textContent = price.getAttribute('data-quarterly');
+                        price.style.opacity = 1;
+                    }, 200);
+                });
+            } else {
+                // Modo Mensual
+                labelQuarterly.classList.remove('active');
+                labelMonthly.classList.add('active');
+                prices.forEach(price => {
+                    price.style.opacity = 0;
+                    setTimeout(() => {
+                        price.textContent = price.getAttribute('data-monthly');
+                        price.style.opacity = 1;
+                    }, 200);
+                });
+            }
+        });
+        
+        // Añadir transición CSS a los precios para el efecto
+        prices.forEach(price => {
+            price.style.transition = 'opacity 0.2s ease';
+        });
+    }
+
+    // 3. FAQ Acordeón
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+            const item = question.parentNode;
+            
+            // Cerrar otros abiertos (opcional, si queremos que solo uno esté abierto)
+            const activeItem = document.querySelector('.faq-item.active');
+            if (activeItem && activeItem !== item) {
+                activeItem.classList.remove('active');
+            }
+            
+            // Alternar estado actual
+            item.classList.toggle('active');
+        });
+    });
+
 });
