@@ -35,10 +35,16 @@ html {
 }
 
 body {
-    background-color: var(--bg-color);
-    color: var(--text-main);
+    background-color: #0b0f19; /* Hardcoded para compatibilidad iOS */
+    color: #f0f2f5; /* Hardcoded para compatibilidad iOS */
+    -webkit-text-fill-color: #f0f2f5; /* Fuerza el color en Safari móvil */
     position: relative;
     line-height: 1.6;
+}
+
+/* Resetear text-fill para elementos con gradiente para que no se rompan */
+.text-gradient, h1 span, .badge, .card-price, .price, .nav-logo span, button, a {
+    -webkit-text-fill-color: unset;
 }
 
 /* Formas de fondo dinámicas para Glassmorphism */
@@ -974,9 +980,13 @@ footer {
     
     .hero h1 {
         font-size: 2.8rem;
+        color: #ffffff;
+        -webkit-text-fill-color: #ffffff;
     }
-    
+
     .hero p {
+        color: #f0f2f5;
+        -webkit-text-fill-color: #f0f2f5;
         margin: 0 auto 2rem;
     }
     
@@ -990,7 +1000,23 @@ footer {
     }
     
     .nav-links {
-        display: none; /* Simplificamos la nav en móvil para este proyecto base */
+        display: none;
+    }
+
+    /* Forzar colores en secciones para todos los móviles */
+    .section-title {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+    }
+
+    .section-subtitle {
+        color: #a0aabf !important;
+        -webkit-text-fill-color: #a0aabf !important;
+    }
+
+    p, li, span:not(.text-gradient):not(.badge):not(.gallery-tag) {
+        color: #f0f2f5;
+        -webkit-text-fill-color: #f0f2f5;
     }
 }
 
