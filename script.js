@@ -56,35 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Efecto de aparición suave al hacer scroll (Reveal avanzado)
-    const revealElements = document.querySelectorAll('.card, .section-title, .section-subtitle, .faq-item, .filter-container');
-    
-    const revealElementsOnScroll = () => {
-        const triggerBottom = window.innerHeight / 5 * 4.5;
-        
-        revealElements.forEach((el, index) => {
-            const elTop = el.getBoundingClientRect().top;
-            
-            if(elTop < triggerBottom) {
-                const delay = el.classList.contains('card') ? (index % 6) * 100 : 0;
-                setTimeout(() => {
-                    el.style.opacity = '1';
-                    el.style.transform = 'translateY(0)';
-                }, delay);
-            }
-        });
-    };
-
-    // Configuración inicial de las tarjetas para la animación
-    revealElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(50px)';
-        el.style.transition = 'all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1)';
-    });
-
-    // Ejecutar en scroll y en carga inicial
-    window.addEventListener('scroll', revealElementsOnScroll);
-    revealElementsOnScroll();
+    // (Efecto scroll-reveal eliminado para mantener el contenido estático al cargar)
 
     // --- NUEVAS FUNCIONALIDADES INTERACTIVAS ---
 
@@ -111,18 +83,17 @@ document.addEventListener('DOMContentLoaded', () => {
             if (isDeleting) typeSpeed /= 2;
             
             if (!isDeleting && charIndex === currentWord.length) {
-                typeSpeed = 2000; // Pausa al terminar de escribir
+                typeSpeed = 2000;
                 isDeleting = true;
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
                 wordIndex = (wordIndex + 1) % words.length;
-                typeSpeed = 500; // Pausa antes de empezar a escribir
+                typeSpeed = 500;
             }
             
             setTimeout(type, typeSpeed);
         }
         
-        // Iniciar efecto
         setTimeout(type, 1000);
     }
 
@@ -246,4 +217,126 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // 6. Lightbox para Blog de Entregas
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const lightbox = document.getElementById('lightbox-modal');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxClose = document.querySelector('.lightbox-close');
+
+    if (galleryItems.length > 0 && lightbox) {
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const img = item.querySelector('.gallery-img');
+                if (img) {
+                    lightboxImg.src = img.src;
+                    lightbox.classList.add('show');
+                    document.body.classList.add('modal-open'); // Prevenir scroll
+                }
+            });
+        });
+
+        // Cerrar modal
+        const closeLightbox = () => {
+            lightbox.classList.remove('show');
+            document.body.classList.remove('modal-open');
+            // Esperar animación para limpiar src
+            setTimeout(() => {
+                if(!lightbox.classList.contains('show')) lightboxImg.src = '';
+            }, 400);
+        };
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        
+        // Cerrar si se hace clic fuera de la imagen
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        // Cerrar con tecla Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('show')) {
+                closeLightbox();
+            }
+        });
+    }
+
+    // 7. Cursor Personalizado
+    const cursor = document.querySelector('.custom-cursor');
+    const cursorRing = document.querySelector('.custom-cursor-ring');
+    
+    // Solo activar si no es un dispositivo táctil
+    if (cursor && cursorRing && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.transform = `translate(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%))`;
+            
+            // Animación suave para el anillo
+            requestAnimationFrame(() => {
+                cursorRing.style.transform = `translate(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%))`;
+            });
+        });
+
+        // Efecto hover en elementos clickeables
+        const clickables = document.querySelectorAll('a, button, .pricing-tab, .faq-question, .gallery-item, .filter-btn');
+        clickables.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorRing.classList.add('hovered');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorRing.classList.remove('hovered');
+            });
+        });
+        
+        // Efecto click
+        document.addEventListener('mousedown', () => {
+            cursorRing.style.transform += ' scale(0.8)';
+        });
+        document.addEventListener('mouseup', () => {
+            cursorRing.style.transform = cursorRing.style.transform.replace(' scale(0.8)', '');
+        });
+    } else if (cursor && cursorRing) {
+        // Ocultar si es táctil
+        cursor.style.display = 'none';
+        cursorRing.style.display = 'none';
+    }
+
+    // 8. Generador de Partículas de Fondo
+    const particlesContainer = document.getElementById('particles');
+    if (particlesContainer) {
+        const createParticle = () => {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            // Tamaño aleatorio entre 2px y 6px
+            const size = Math.random() * 4 + 2;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            
+            // Posición X aleatoria
+            particle.style.left = `${Math.random() * 100}vw`;
+            
+            // Duración aleatoria entre 10s y 20s
+            const duration = Math.random() * 10 + 10;
+            particle.style.animationDuration = `${duration}s`;
+            
+            // Retraso aleatorio
+            particle.style.animationDelay = `${Math.random() * 5}s`;
+            
+            particlesContainer.appendChild(particle);
+            
+            // Eliminar partícula cuando termine la animación
+            setTimeout(() => {
+                particle.remove();
+            }, (duration + 5) * 1000);
+        };
+        
+        // Crear 30 partículas iniciales
+        for(let i=0; i<30; i++) {
+            setTimeout(createParticle, Math.random() * 3000);
+        }
+        
+        // Seguir creando partículas continuamente
+        setInterval(createParticle, 1000);
+    }
 });
