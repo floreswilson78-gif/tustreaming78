@@ -298,9 +298,8 @@ section {
 }
 
 .text-gradient {
-    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #ffffff;
+    text-shadow: 0 0 15px var(--primary-glow), 0 0 30px rgba(139, 92, 246, 0.4);
 }
 
 .hero p {
