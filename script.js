@@ -127,38 +127,47 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 2. Toggle de Precios
-    const pricingToggle = document.getElementById('pricingToggle');
+    const tabs = document.querySelectorAll('.pricing-tab');
+    const indicator = document.querySelector('.pricing-tab-indicator');
     const prices = document.querySelectorAll('.price');
-    const labelMonthly = document.getElementById('label-monthly');
-    const labelQuarterly = document.getElementById('label-quarterly');
-    
-    if (pricingToggle) {
-        pricingToggle.addEventListener('change', () => {
-            if (pricingToggle.checked) {
-                // Modo Trimestral
-                labelMonthly.classList.remove('active');
-                labelQuarterly.classList.add('active');
-                prices.forEach(price => {
-                    price.style.opacity = 0;
-                    setTimeout(() => {
-                        price.textContent = price.getAttribute('data-quarterly');
-                        price.style.opacity = 1;
-                    }, 200);
-                });
-            } else {
-                // Modo Mensual
-                labelQuarterly.classList.remove('active');
-                labelMonthly.classList.add('active');
-                prices.forEach(price => {
-                    price.style.opacity = 0;
-                    setTimeout(() => {
-                        price.textContent = price.getAttribute('data-monthly');
-                        price.style.opacity = 1;
-                    }, 200);
-                });
+
+    if (tabs.length > 0 && indicator) {
+        // Inicializar indicador
+        const initIndicator = () => {
+            const activeTab = document.querySelector('.pricing-tab.active');
+            if (activeTab) {
+                indicator.style.width = `${activeTab.offsetWidth}px`;
+                indicator.style.left = `${activeTab.offsetLeft}px`;
             }
-        });
+        };
         
+        // Esperar a que la vista se renderice
+        setTimeout(initIndicator, 200);
+        window.addEventListener('resize', initIndicator);
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // Mover indicador
+                indicator.style.width = `${tab.offsetWidth}px`;
+                indicator.style.left = `${tab.offsetLeft}px`;
+                
+                const period = tab.getAttribute('data-period');
+                
+                prices.forEach(price => {
+                    if (price.hasAttribute(`data-${period}`)) {
+                        price.style.opacity = 0;
+                        setTimeout(() => {
+                            price.textContent = price.getAttribute(`data-${period}`);
+                            price.style.opacity = 1;
+                        }, 200);
+                    }
+                });
+            });
+        });
+
         // Añadir transición CSS a los precios para el efecto
         prices.forEach(price => {
             price.style.transition = 'opacity 0.2s ease';
