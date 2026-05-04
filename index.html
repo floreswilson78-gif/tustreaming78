@@ -200,8 +200,12 @@
             <h2 class="section-title">Combos Especiales</h2>
             <p class="section-subtitle">Lleva más plataformas pagando menos. ¡Ahorro garantizado!</p>
             
-            <div class="carousel-container combos-carousel">
-                <div class="carousel-track combos-track">
+            <div class="carousel-wrapper">
+                <button class="carousel-btn prev" id="combos-prev" aria-label="Anterior combo">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+                <div class="carousel-container combos-carousel" id="combos-container">
+                <div class="carousel-track combos-track" id="combos-track">
                     <div class="combo-card-wrapper">
                         <div class="card glass-panel hover-glow combo-card">
                             <div class="card-header bg-combo">
@@ -355,14 +359,22 @@
                     </div>
                 </div>
             </div>
+                <button class="carousel-btn next" id="combos-next" aria-label="Siguiente combo">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+            </div>
         </section>
 
         <section id="testimonios" class="testimonials">
             <h2 class="section-title">Lo que dicen nuestros clientes</h2>
             <p class="section-subtitle">Únete a cientos de usuarios satisfechos.</p>
             
-            <div class="carousel-container">
-                <div class="carousel-track">
+            <div class="carousel-wrapper">
+                <button class="carousel-btn prev" id="testimonios-prev" aria-label="Anterior testimonio">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+                <div class="carousel-container" id="testimonios-container">
+                <div class="carousel-track" id="testimonios-track">
                     <!-- Originales -->
                     <div class="testimonial-card glass-panel">
                         <div class="user-info">
@@ -488,14 +500,22 @@
                     </div>
                 </div>
             </div>
+                <button class="carousel-btn next" id="testimonios-next" aria-label="Siguiente testimonio">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+            </div>
         </section>
 
         <section id="entregas" class="blog-entregas">
             <h2 class="section-title">Transparencia y Confianza</h2>
             <p class="section-subtitle">Nuestros clientes avalan la calidad y rapidez de nuestro servicio.</p>
             
-            <div class="carousel-container">
-                <div class="carousel-track gallery-track">
+            <div class="carousel-wrapper">
+                <button class="carousel-btn prev" id="galeria-prev" aria-label="Anterior captura">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+                <div class="carousel-container" id="galeria-container">
+                <div class="carousel-track gallery-track" id="galeria-track">
                     <!-- Originales -->
                     <!-- Captura 1 -->
                     <div class="gallery-item-wrapper">
@@ -588,6 +608,10 @@
                         </div>
                     </div>
                 </div>
+            </div>
+                <button class="carousel-btn next" id="galeria-next" aria-label="Siguiente captura">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
             </div>
         </section>
 

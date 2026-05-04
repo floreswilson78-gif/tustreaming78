@@ -339,4 +339,129 @@ document.addEventListener('DOMContentLoaded', () => {
         // Seguir creando partículas continuamente
         setInterval(createParticle, 1000);
     }
+
+    // =========================================================
+    // 9. CARRUSELES — Auto-scroll infinito sin espacios vacíos
+    //    PC y móvil: RAF continuo + touch/drag + flechas
+    // =========================================================
+    function initInfiniteCarousel(containerId, trackId, prevBtnId, nextBtnId, speed) {
+        const container = document.getElementById(containerId);
+        const track     = document.getElementById(trackId);
+        const prevBtn   = document.getElementById(prevBtnId);
+        const nextBtn   = document.getElementById(nextBtnId);
+        if (!container || !track) return;
+
+        // ── PASO 1: limpiar duplicados del HTML, quedarnos solo con originales ──
+        const allHtmlItems = Array.from(track.children);
+        const origCount    = Math.ceil(allHtmlItems.length / 2); // El HTML trae 2x cada item
+        const originals    = allHtmlItems.slice(0, origCount);
+        track.innerHTML    = '';
+        originals.forEach(el => track.appendChild(el));
+
+        // ── PASO 2: clonar hasta que el track sea ≥ 4× el ancho del container ──
+        function fillClones() {
+            const needed = container.offsetWidth * 4;
+            while (track.scrollWidth < needed) {
+                originals.forEach(el => {
+                    const clone = el.cloneNode(true);
+                    clone.setAttribute('aria-hidden', 'true');
+                    track.appendChild(clone);
+                });
+            }
+        }
+        fillClones();
+
+        // ── PASO 3: calcular el ancho de UN ciclo (= los originales) ──────────
+        // Se recalcula en cada tick para soportar resize
+        function getGap() {
+            return parseFloat(window.getComputedStyle(track).gap) || 32;
+        }
+        function getCycleWidth() {
+            if (!track.children[0]) return 1;
+            const itemW = track.children[0].getBoundingClientRect().width;
+            return (itemW + getGap()) * origCount;
+        }
+
+        // ── PASO 4: motor de animación ─────────────────────────────────────────
+        let posX      = 0;       // posición actual (negativo = movido a la izquierda)
+        let paused    = false;
+        let dragging  = false;
+        let dragX0    = 0;
+        let posX0     = 0;
+        let lastTs    = null;
+        const vel     = speed || 55; // px/s
+
+        function applyPos(x) {
+            // Mantener posX dentro de un rango que evita acumular negativos enormes
+            const cw = getCycleWidth();
+            // Normalizar: siempre dentro de [ -cw, 0 ]
+            posX = ((x % cw) - cw) % cw; // resultado siempre en (-cw, 0]
+            track.style.transform = `translateX(${posX}px)`;
+        }
+
+        function tick(ts) {
+            if (!lastTs) lastTs = ts;
+            const dt = (ts - lastTs) / 1000;
+            lastTs = ts;
+
+            if (!paused && !dragging) {
+                posX -= vel * dt;
+                applyPos(posX);
+            }
+            requestAnimationFrame(tick);
+        }
+
+        // ── PASO 5: hover pause ────────────────────────────────────────────────
+        container.addEventListener('mouseenter', () => { paused = true; });
+        container.addEventListener('mouseleave', () => { paused = false; });
+
+        // ── PASO 6: drag (mouse + touch) ───────────────────────────────────────
+        function startDrag(clientX) {
+            dragging = true;
+            dragX0   = clientX;
+            posX0    = posX;
+        }
+        function moveDrag(clientX) {
+            if (!dragging) return;
+            const delta = clientX - dragX0;
+            posX = posX0 + delta;
+            track.style.transform = `translateX(${posX}px)`;
+        }
+        function endDrag() {
+            if (!dragging) return;
+            dragging = false;
+            lastTs   = null; // evitar salto brusco de delta
+            // Normalizar posición después del drag
+            applyPos(posX);
+        }
+
+        // Mouse
+        container.addEventListener('mousedown', e => { startDrag(e.clientX); e.preventDefault(); });
+        window.addEventListener('mousemove', e => moveDrag(e.clientX));
+        window.addEventListener('mouseup', () => endDrag());
+
+        // Touch
+        container.addEventListener('touchstart', e => startDrag(e.touches[0].clientX), { passive: true });
+        container.addEventListener('touchmove',  e => moveDrag(e.touches[0].clientX),  { passive: true });
+        container.addEventListener('touchend', () => endDrag());
+
+        // ── PASO 7: botones flecha ─────────────────────────────────────────────
+        function getStep() {
+            if (!track.children[0]) return 320;
+            return track.children[0].getBoundingClientRect().width + getGap();
+        }
+        if (prevBtn) prevBtn.addEventListener('click', () => { posX += getStep(); lastTs = null; });
+        if (nextBtn) nextBtn.addEventListener('click', () => { posX -= getStep(); lastTs = null; });
+
+        // ── INICIO ─────────────────────────────────────────────────────────────
+        requestAnimationFrame(tick);
+    }
+
+    // Inicializar los 3 carruseles
+    initInfiniteCarousel('testimonios-container', 'testimonios-track', 'testimonios-prev', 'testimonios-next', 50);
+    initInfiniteCarousel('galeria-container',     'galeria-track',     'galeria-prev',     'galeria-next',     40);
+    initInfiniteCarousel('combos-container',      'combos-track',      'combos-prev',      'combos-next',      55);
+
 });
+
+

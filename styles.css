@@ -848,37 +848,78 @@ footer {
     box-shadow: 0 0 20px 2px var(--primary-glow);
 }
 
-/* 4. Testimonios */
+/* 4. Testimonios & Carruseles */
 .testimonials {
     overflow: hidden;
 }
+
+/* Wrapper que contiene el carrusel + las flechas */
+.carousel-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+/* Botones de flecha de navegación */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(139, 92, 246, 0.15);
+    border: 1.5px solid rgba(139, 92, 246, 0.4);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.25s, box-shadow 0.25s, transform 0.25s;
+    backdrop-filter: blur(6px);
+    flex-shrink: 0;
+}
+.carousel-btn:hover {
+    background: var(--primary-color);
+    box-shadow: 0 0 16px var(--primary-glow);
+    transform: translateY(-50%) scale(1.12);
+}
+.carousel-btn.prev { left: -22px; }
+.carousel-btn.next { right: -22px; }
+
+/* Ocultar flechas en pantallas muy pequeñas donde no caben */
+@media (max-width: 480px) {
+    .carousel-btn.prev { left: 4px; }
+    .carousel-btn.next { right: 4px; }
+}
+
 .carousel-container {
     width: 100%;
     padding: 2rem 0;
-    /* Para permitir scroll en móvil o animación continua */
     display: flex;
-    overflow-x: auto;
-    scrollbar-width: none; /* Firefox */
+    overflow: hidden;  /* JS controla el scroll, no el navegador */
+    position: relative;
+    cursor: grab;
+}
+.carousel-container:active {
+    cursor: grabbing;
 }
 .carousel-container::-webkit-scrollbar {
-    display: none; /* Safari and Chrome */
+    display: none;
 }
 .carousel-track {
     display: flex;
     gap: 2rem;
     padding: 0 1rem;
-    width: max-content;
-    animation: scrollCarousel 30s linear infinite;
+    /* Sin animación CSS — JS lo mueve */
+    will-change: transform;
+    user-select: none;
+    flex-shrink: 0;
 }
 
-@keyframes scrollCarousel {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(calc(-50% - 1rem)); }
-}
-
-/* Pausar la animación cuando el usuario pone el mouse encima para leer */
-.carousel-container:hover .carousel-track {
-    animation-play-state: paused;
+/* Pausar auto-scroll al hacer hover (solo desktop) */
+.carousel-container.is-paused .carousel-track {
+    /* vacío: el JS maneja la pausa */
 }
 .testimonial-card {
     min-width: 300px;
