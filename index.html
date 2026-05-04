@@ -5,11 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tustreaming78 | Servicios de Streaming Premium</title>
     <meta name="description" content="Tustreaming78 - Tu tienda virtual para las mejores plataformas de streaming. Rápido, seguro y al mejor precio.">
+
+    <!-- ══ SEGURIDAD ══════════════════════════════════════════════════════ -->
+    <!-- Previene ataques de clickjacking (fallback para navegadores sin headers HTTP) -->
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <!-- Previene MIME-type sniffing -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <!-- Política de referrer: no filtrar información de origen al navegar a externos -->
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <!-- Content Security Policy como fallback meta (los HTTP headers tienen prioridad) -->
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self';
+                   script-src 'self' 'unsafe-inline';
+                   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+                   font-src https://fonts.gstatic.com;
+                   img-src 'self' data: blob:;
+                   connect-src 'none';
+                   frame-ancestors 'self';
+                   base-uri 'self';
+                   form-action 'self';">
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
     <!-- Cursor Personalizado -->
@@ -55,7 +77,7 @@
                 <p>Accede a las plataformas de streaming más populares con los mejores precios del mercado. Activación rápida y soporte 24/7.</p>
                 <div class="hero-buttons">
                     <a href="#servicios" class="btn btn-primary">Ver Catálogo</a>
-                    <a href="https://w.app/5qpzx0" target="_blank" class="btn btn-secondary">
+                    <a href="https://w.app/5qpzx0" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
                         Escribir ahora
                     </a>
@@ -98,7 +120,7 @@
                             <li>✓ Pantallas Múltiples</li>
                             <li>✓ Soporte Completo</li>
                         </ul>
-                        <a href="https://t.me/Tustreaming78_bot" class="btn btn-outline" target="_blank">Comprar ahora</a>
+                        <a href="https://t.me/Tustreaming78_bot" class="btn btn-outline" target="_blank" rel="noopener noreferrer">Comprar ahora</a>
                     </div>
                 </div>
 
@@ -116,7 +138,7 @@
                             <li>✓ Escucha offline</li>
                             <li>✓ Calidad de audio premium</li>
                         </ul>
-                        <a href="https://t.me/Tustreaming78_bot" class="btn btn-outline" target="_blank">Comprar ahora</a>
+                        <a href="https://t.me/Tustreaming78_bot" class="btn btn-outline" target="_blank" rel="noopener noreferrer">Comprar ahora</a>
                     </div>
                 </div>
 
@@ -134,7 +156,7 @@
                             <li>✓ Películas exclusivas</li>
                             <li>✓ Calidad 4K HDR</li>
                         </ul>
-                        <a href="https://t.me/Tustreaming78_bot" class="btn btn-outline" target="_blank">Comprar ahora</a>
+                        <a href="https://t.me/Tustreaming78_bot" class="btn btn-outline" target="_blank" rel="noopener noreferrer">Comprar ahora</a>
                     </div>
                 </div>
 
@@ -152,7 +174,7 @@
                             <li>✓ Estrenos de cine</li>
                             <li>✓ Hasta 3 pantallas</li>
                         </ul>
-                        <a href="https://t.me/Tustreaming78_bot" class="btn btn-outline" target="_blank">Comprar ahora</a>
+                        <a href="https://t.me/Tustreaming78_bot" class="btn btn-outline" target="_blank" rel="noopener noreferrer">Comprar ahora</a>
                     </div>
                 </div>
 
@@ -172,7 +194,7 @@
                             <li>✓ Estrenos exclusivos</li>
                             <li>✓ Perfiles infantiles</li>
                         </ul>
-                        <a href="https://t.me/Tustreaming78_bot" class="btn btn-outline" target="_blank">Comprar ahora</a>
+                        <a href="https://t.me/Tustreaming78_bot" class="btn btn-outline" target="_blank" rel="noopener noreferrer">Comprar ahora</a>
                     </div>
                 </div>
 
@@ -190,7 +212,7 @@
                             <li>✓ Deportes en vivo</li>
                             <li>✓ Series originales</li>
                         </ul>
-                        <a href="https://t.me/Tustreaming78_bot" class="btn btn-outline" target="_blank">Comprar ahora</a>
+                        <a href="https://t.me/Tustreaming78_bot" class="btn btn-outline" target="_blank" rel="noopener noreferrer">Comprar ahora</a>
                     </div>
                 </div>
             </div>
@@ -220,7 +242,7 @@
                                     <li>✓ Disney+</li>
                                     <li>✓ HBO Max</li>
                                 </ul>
-                                <a href="https://t.me/Tustreaming78_bot" class="btn btn-primary" target="_blank">Comprar Combo</a>
+                                <a href="https://t.me/Tustreaming78_bot" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Comprar Combo</a>
                             </div>
                         </div>
                     </div>
@@ -239,7 +261,7 @@
                                     <li>✓ Spotify</li>
                                     <li>✓ Paramount+</li>
                                 </ul>
-                                <a href="https://t.me/Tustreaming78_bot" class="btn btn-primary" target="_blank">Comprar Combo</a>
+                                <a href="https://t.me/Tustreaming78_bot" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Comprar Combo</a>
                             </div>
                         </div>
                     </div>
@@ -259,7 +281,7 @@
                                     <li>✓ Prime Video</li>
                                     <li>✓ Disney+</li>
                                 </ul>
-                                <a href="https://t.me/Tustreaming78_bot" class="btn btn-primary" target="_blank">Comprar Combo</a>
+                                <a href="https://t.me/Tustreaming78_bot" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Comprar Combo</a>
                             </div>
                         </div>
                     </div>
@@ -277,7 +299,7 @@
                                     <li>✓ Netflix (Básico)</li>
                                     <li>✓ Prime Video</li>
                                 </ul>
-                                <a href="https://t.me/Tustreaming78_bot" class="btn btn-primary" target="_blank">Comprar Combo</a>
+                                <a href="https://t.me/Tustreaming78_bot" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Comprar Combo</a>
                             </div>
                         </div>
                     </div>
@@ -296,7 +318,7 @@
                                     <li>✓ Disney+</li>
                                     <li>✓ HBO Max</li>
                                 </ul>
-                                <a href="https://t.me/Tustreaming78_bot" class="btn btn-primary" target="_blank">Comprar Combo</a>
+                                <a href="https://t.me/Tustreaming78_bot" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Comprar Combo</a>
                             </div>
                         </div>
                     </div>
@@ -315,7 +337,7 @@
                                     <li>✓ Spotify</li>
                                     <li>✓ Paramount+</li>
                                 </ul>
-                                <a href="https://t.me/Tustreaming78_bot" class="btn btn-primary" target="_blank">Comprar Combo</a>
+                                <a href="https://t.me/Tustreaming78_bot" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Comprar Combo</a>
                             </div>
                         </div>
                     </div>
@@ -335,7 +357,7 @@
                                     <li>✓ Prime Video</li>
                                     <li>✓ Disney+</li>
                                 </ul>
-                                <a href="https://t.me/Tustreaming78_bot" class="btn btn-primary" target="_blank">Comprar Combo</a>
+                                <a href="https://t.me/Tustreaming78_bot" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Comprar Combo</a>
                             </div>
                         </div>
                     </div>
@@ -353,7 +375,7 @@
                                     <li>✓ Netflix (Básico)</li>
                                     <li>✓ Prime Video</li>
                                 </ul>
-                                <a href="https://t.me/Tustreaming78_bot" class="btn btn-primary" target="_blank">Comprar Combo</a>
+                                <a href="https://t.me/Tustreaming78_bot" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Comprar Combo</a>
                             </div>
                         </div>
                     </div>
@@ -671,7 +693,7 @@
             <div class="banner-content">
                 <h2>¿Buscas respuestas rápidas?</h2>
                 <p>Usa nuestro bot automatizado de Telegram para consultar disponibilidad, precios y realizar pedidos al instante.</p>
-                <a href="https://t.me/Tustreaming78_bot" target="_blank" class="btn btn-telegram">
+                <a href="https://t.me/Tustreaming78_bot" target="_blank" rel="noopener noreferrer" class="btn btn-telegram">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 24c6.627 0 12-5.373 12-12S18.627 0 12 0 0 5.373 0 12s5.373 12 12 12zm5.894-16.49l-1.936 10.42c-.14.618-.535.772-1.07.48l-2.955-2.096-1.425 1.318c-.157.15-.29.28-.596.28l.21-2.983 5.642-4.88c.245-.208-.054-.325-.38-.112l-6.974 4.19-2.884-.87c-.627-.188-.64-.604.13-.895l11.272-4.148c.52-.18.977.104.816.946z"/></svg>
                     Ir al Bot de Telegram
                 </a>
@@ -694,14 +716,14 @@
     <div class="floating-buttons">
         <div class="whatsapp-container">
             <div class="whatsapp-tooltip">¡En línea!</div>
-            <a href="https://w.app/5qpzx0" class="float-btn whatsapp" target="_blank" aria-label="Chat en WhatsApp">
+            <a href="https://w.app/5qpzx0" class="float-btn whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Chat en WhatsApp">
                 <span class="online-dot"></span>
                 <svg width="30" height="30" viewBox="0 0 24 24" fill="#ffffff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
             </a>
         </div>
         <div class="telegram-container">
             <div class="telegram-tooltip">¡En línea!</div>
-            <a href="https://t.me/Tustreaming78_bot" class="float-btn telegram" target="_blank" aria-label="Chat en Telegram">
+            <a href="https://t.me/Tustreaming78_bot" class="float-btn telegram" target="_blank" rel="noopener noreferrer" aria-label="Chat en Telegram">
                 <span class="online-dot telegram-dot"></span>
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="#ffffff"><path d="M12 24c6.627 0 12-5.373 12-12S18.627 0 12 0 0 5.373 0 12s5.373 12 12 12zm5.894-16.49l-1.936 10.42c-.14.618-.535.772-1.07.48l-2.955-2.096-1.425 1.318c-.157.15-.29.28-.596.28l.21-2.983 5.642-4.88c.245-.208-.054-.325-.38-.112l-6.974 4.19-2.884-.87c-.627-.188-.64-.604.13-.895l11.272-4.148c.52-.18.977.104.816.946z"/></svg>
             </a>
