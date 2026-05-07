@@ -598,14 +598,21 @@ document.addEventListener('DOMContentLoaded', () => {
             star.addEventListener('mouseout', function() {
                 updateStars(reviewRatingInput.value);
             });
-            
-            // Click effect (mobile & desktop)
+            // Click effect (desktop)
             star.addEventListener('click', function(e) {
-                e.preventDefault(); // Evitar comportamientos por defecto
+                e.preventDefault();
                 const value = this.getAttribute('data-value');
                 reviewRatingInput.value = value;
                 updateStars(value);
             });
+            
+            // Touch effect (mobile)
+            star.addEventListener('touchstart', function(e) {
+                e.preventDefault(); // Evita que se dispare el click emulado después
+                const value = this.getAttribute('data-value');
+                reviewRatingInput.value = value;
+                updateStars(value);
+            }, {passive: false});
         });
         
         // Estado inicial
