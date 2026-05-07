@@ -338,6 +338,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Seguir creando partículas continuamente
         setInterval(createParticle, 1000);
+    }
+
     // =========================================================
     // 9. CARRUSELES — Auto-scroll infinito sin espacios vacíos
     //    PC y móvil: RAF continuo + touch/drag + flechas
