@@ -1066,7 +1066,8 @@ footer {
 .star-rating span {
     font-size: 1.8rem;
     color: rgba(255, 255, 255, 0.2);
-    transition: color 0.2s;
+    -webkit-text-fill-color: currentcolor; /* Evita que el color global del body lo sobreescriba */
+    transition: color 0.2s, -webkit-text-fill-color 0.2s;
 }
 .star-rating span.active,
 .star-rating span:hover,
