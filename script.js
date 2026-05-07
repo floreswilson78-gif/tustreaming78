@@ -338,18 +338,35 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Seguir creando partículas continuamente
         setInterval(createParticle, 1000);
-    }
-
     // =========================================================
     // 9. CARRUSELES — Auto-scroll infinito sin espacios vacíos
     //    PC y móvil: RAF continuo + touch/drag + flechas
     // =========================================================
+    // Función para inicializar un carrusel
     function initInfiniteCarousel(containerId, trackId, prevBtnId, nextBtnId, speed) {
         const container = document.getElementById(containerId);
         const track     = document.getElementById(trackId);
         const prevBtn   = document.getElementById(prevBtnId);
         const nextBtn   = document.getElementById(nextBtnId);
         if (!container || !track) return;
+
+        // Cancelar loop anterior si existe (evita "peleas" de animaciones)
+        if (track.dataset.rafId) {
+            cancelAnimationFrame(parseInt(track.dataset.rafId));
+        }
+
+        // Limpiar event listeners previos clonando y reemplazando los botones
+        // Para evitar acumulación de clicks
+        let newPrevBtn = prevBtn;
+        let newNextBtn = nextBtn;
+        if (prevBtn) {
+            newPrevBtn = prevBtn.cloneNode(true);
+            prevBtn.parentNode.replaceChild(newPrevBtn, prevBtn);
+        }
+        if (nextBtn) {
+            newNextBtn = nextBtn.cloneNode(true);
+            nextBtn.parentNode.replaceChild(newNextBtn, nextBtn);
+        }
 
         // ── PASO 1: limpiar duplicados del HTML, quedarnos solo con originales ──
         let originals = Array.from(track.children).filter(el => el.getAttribute('aria-hidden') !== 'true');
@@ -427,7 +444,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 posX -= vel * dt;
                 applyPos(posX);
             }
-            requestAnimationFrame(tick);
+            track.dataset.rafId = requestAnimationFrame(tick);
         }
 
         // ── PASO 5: hover pause ────────────────────────────────────────────────
@@ -469,11 +486,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!track.children[0]) return 320;
             return track.children[0].getBoundingClientRect().width + getGap();
         }
-        if (prevBtn) prevBtn.addEventListener('click', () => { posX += getStep(); lastTs = null; });
-        if (nextBtn) nextBtn.addEventListener('click', () => { posX -= getStep(); lastTs = null; });
+        if (newPrevBtn) newPrevBtn.addEventListener('click', () => { posX += getStep(); lastTs = null; applyPos(posX); });
+        if (newNextBtn) newNextBtn.addEventListener('click', () => { posX -= getStep(); lastTs = null; applyPos(posX); });
 
         // ── INICIO ─────────────────────────────────────────────────────────────
-        requestAnimationFrame(tick);
+        track.dataset.rafId = requestAnimationFrame(tick);
     }
 
     // Inicializar los 3 carruseles
@@ -559,39 +576,38 @@ document.addEventListener('DOMContentLoaded', () => {
     if (starRating) {
         const stars = starRating.querySelectorAll('span');
         
+        function updateStars(value) {
+            stars.forEach(s => {
+                if (parseInt(s.getAttribute('data-value')) <= parseInt(value)) {
+                    s.style.color = '#ffb703';
+                } else {
+                    s.style.color = 'rgba(255, 255, 255, 0.2)';
+                }
+            });
+        }
+        
         stars.forEach(star => {
-            // Hover effect
+            // Hover effect (desktop)
             star.addEventListener('mouseover', function() {
-                const value = this.getAttribute('data-value');
-                stars.forEach(s => {
-                    if (s.getAttribute('data-value') <= value) {
-                        s.style.color = '#ffb703';
-                    } else {
-                        s.style.color = 'rgba(255, 255, 255, 0.2)';
-                    }
-                });
+                updateStars(this.getAttribute('data-value'));
             });
             
-            // Mouseout effect
+            // Mouseout effect (desktop)
             star.addEventListener('mouseout', function() {
-                const currentValue = reviewRatingInput.value;
-                stars.forEach(s => {
-                    if (s.getAttribute('data-value') <= currentValue) {
-                        s.style.color = '#ffb703';
-                    } else {
-                        s.style.color = 'rgba(255, 255, 255, 0.2)';
-                    }
-                });
+                updateStars(reviewRatingInput.value);
             });
             
-            // Click effect
-            star.addEventListener('click', function() {
+            // Click effect (mobile & desktop)
+            star.addEventListener('click', function(e) {
+                e.preventDefault(); // Evitar comportamientos por defecto
                 const value = this.getAttribute('data-value');
                 reviewRatingInput.value = value;
-                stars.forEach(s => s.classList.remove('active'));
-                this.classList.add('active');
+                updateStars(value);
             });
         });
+        
+        // Estado inicial
+        updateStars(reviewRatingInput.value);
     }
 
     const reviewForm = document.getElementById('review-form');
