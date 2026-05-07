@@ -367,13 +367,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // ── PASO 2: clonar hasta que el track sea ≥ 4× el ancho del container ──
         function fillClones() {
+            if (originals.length === 0) return; // Evitar loop infinito
             const needed = container.offsetWidth * 4;
-            while (track.scrollWidth < needed) {
+            let iterations = 0;
+            // Usamos una variable para estimar el ancho si scrollWidth es 0 (ej. en display none)
+            const itemWidth = originals[0].offsetWidth || 300;
+            let currentWidth = track.scrollWidth || (originals.length * itemWidth);
+            
+            while (currentWidth < needed && iterations < 20) {
                 originals.forEach(el => {
                     const clone = el.cloneNode(true);
                     clone.setAttribute('aria-hidden', 'true');
                     track.appendChild(clone);
                 });
+                currentWidth += (originals.length * itemWidth);
+                iterations++;
             }
         }
         fillClones();
@@ -489,11 +497,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let db;
     if (typeof firebase !== 'undefined') {
-        firebase.initializeApp(firebaseConfig);
-        db = firebase.firestore();
-        
-        // Cargar testimonios desde la base de datos al inicio
-        db.collection('testimonios').orderBy('timestamp', 'asc').get().then((querySnapshot) => {
+        try {
+            if (!firebase.apps.length) {
+                firebase.initializeApp(firebaseConfig);
+            }
+            db = firebase.firestore();
+            
+            // Cargar testimonios desde la base de datos al inicio
+            db.collection('testimonios').orderBy('timestamp', 'asc').get().then((querySnapshot) => {
             if (querySnapshot.empty) return;
             
             const track = document.getElementById('testimonios-track');
@@ -537,6 +548,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Reiniciar motor del carrusel con los nuevos testimonios
             initInfiniteCarousel('testimonios-container', 'testimonios-track', 'testimonios-prev', 'testimonios-next', 50);
         }).catch(err => console.error("Error cargando testimonios:", err));
+        } catch (e) {
+            console.error("Error inicializando Firebase:", e);
+        }
     }
 
     const starRating = document.getElementById('star-rating');
