@@ -391,11 +391,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (originals.length === 0) return; // Evitar loop infinito
             const needed = container.offsetWidth * 4;
             let iterations = 0;
+            let clonesAdded = 0;
             // Usamos una variable para estimar el ancho si scrollWidth es 0 (ej. en display none)
             const itemWidth = originals[0].offsetWidth || 300;
             let currentWidth = track.scrollWidth || (originals.length * itemWidth);
             
-            while (currentWidth < needed && iterations < 20) {
+            // Garantizar AL MENOS un ciclo de clonación para que el loop no quede en blanco al final
+            while ((currentWidth < needed || clonesAdded < 1) && iterations < 20) {
                 originals.forEach(el => {
                     const clone = el.cloneNode(true);
                     clone.setAttribute('aria-hidden', 'true');
@@ -403,11 +405,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
                 currentWidth += (originals.length * itemWidth);
                 iterations++;
+                clonesAdded++;
             }
         }
         fillClones();
 
-        // ── PASO 3: calcular el ancho de UN ciclo (= los originales) ──────────
+        // ── PASO 3: calcular el ancho
         // Se recalcula en cada tick para soportar resize
         function getGap() {
             return parseFloat(window.getComputedStyle(track).gap) || 32;
