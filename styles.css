@@ -1068,6 +1068,9 @@ footer {
     color: rgba(255, 255, 255, 0.2);
     -webkit-text-fill-color: currentcolor; /* Evita que el color global del body lo sobreescriba */
     transition: color 0.2s, -webkit-text-fill-color 0.2s;
+    user-select: none; /* Previene selección de texto en móviles */
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 .star-rating span.active,
 .star-rating span:hover,
