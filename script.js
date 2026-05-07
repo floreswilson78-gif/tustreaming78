@@ -223,16 +223,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxImg = document.getElementById('lightbox-img');
     const lightboxClose = document.querySelector('.lightbox-close');
 
-    if (galleryItems.length > 0 && lightbox) {
-        galleryItems.forEach(item => {
-            item.addEventListener('click', () => {
+    if (lightbox) {
+        // Usar delegación de eventos en el contenedor para que funcione con los clones del carrusel
+        document.body.addEventListener('click', (e) => {
+            const item = e.target.closest('.gallery-item');
+            if (item && item.closest('#galeria-container')) {
                 const img = item.querySelector('.gallery-img');
                 if (img) {
                     lightboxImg.src = img.src;
                     lightbox.classList.add('show');
                     document.body.classList.add('modal-open'); // Prevenir scroll
                 }
-            });
+            }
         });
 
         // Cerrar modal
