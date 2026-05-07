@@ -352,10 +352,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!container || !track) return;
 
         // ── PASO 1: limpiar duplicados del HTML, quedarnos solo con originales ──
-        const allHtmlItems = Array.from(track.children);
-        const origCount    = Math.ceil(allHtmlItems.length / 2); // El HTML trae 2x cada item
-        const originals    = allHtmlItems.slice(0, origCount);
-        track.innerHTML    = '';
+        let originals = Array.from(track.children).filter(el => el.getAttribute('aria-hidden') !== 'true');
+        // Si es la primera carga, el HTML original trae duplicados (sin aria-hidden)
+        if (originals.length > 0 && originals.length % 2 === 0) {
+            const half = originals.length / 2;
+            // Validar si es realmente un duplicado (HTML inicial)
+            if (originals[0].innerHTML === originals[half].innerHTML) {
+                originals = originals.slice(0, half);
+            }
+        }
+        const origCount = originals.length;
+        track.innerHTML = '';
         originals.forEach(el => track.appendChild(el));
 
         // ── PASO 2: clonar hasta que el track sea ≥ 4× el ancho del container ──
@@ -377,9 +384,13 @@ document.addEventListener('DOMContentLoaded', () => {
             return parseFloat(window.getComputedStyle(track).gap) || 32;
         }
         function getCycleWidth() {
-            if (!track.children[0]) return 1;
-            const itemW = track.children[0].getBoundingClientRect().width;
-            return (itemW + getGap()) * origCount;
+            if (track.children.length === 0) return 1;
+            let totalWidth = 0;
+            const gap = getGap();
+            for (let i = 0; i < origCount; i++) {
+                totalWidth += track.children[i].getBoundingClientRect().width + gap;
+            }
+            return totalWidth;
         }
 
         // ── PASO 4: motor de animación ─────────────────────────────────────────
@@ -461,6 +472,207 @@ document.addEventListener('DOMContentLoaded', () => {
     initInfiniteCarousel('testimonios-container', 'testimonios-track', 'testimonios-prev', 'testimonios-next', 50);
     initInfiniteCarousel('galeria-container',     'galeria-track',     'galeria-prev',     'galeria-next',     40);
     initInfiniteCarousel('combos-container',      'combos-track',      'combos-prev',      'combos-next',      55);
+
+    // =========================================================
+    // 10. FORMULARIO DE RESEÑAS Y FIREBASE
+    // =========================================================
+    // Configuración de Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyCRbtQv9OmQt55zO-HoRem5PxOmXUQY4y4",
+      authDomain: "tustreaming78-34e40.firebaseapp.com",
+      projectId: "tustreaming78-34e40",
+      storageBucket: "tustreaming78-34e40.firebasestorage.app",
+      messagingSenderId: "382959281864",
+      appId: "1:382959281864:web:17bd3aaf83b775012a27fd",
+      measurementId: "G-QRPS64J9LN"
+    };
+
+    let db;
+    if (typeof firebase !== 'undefined') {
+        firebase.initializeApp(firebaseConfig);
+        db = firebase.firestore();
+        
+        // Cargar testimonios desde la base de datos al inicio
+        db.collection('testimonios').orderBy('timestamp', 'asc').get().then((querySnapshot) => {
+            if (querySnapshot.empty) return;
+            
+            const track = document.getElementById('testimonios-track');
+            
+            // Limpiar clones temporales
+            Array.from(track.children).forEach(el => {
+                if (el.getAttribute('aria-hidden') === 'true') {
+                    track.removeChild(el);
+                }
+            });
+            
+            querySnapshot.forEach((doc) => {
+                const data = doc.data();
+                let starsHtml = '';
+                for (let i = 0; i < 5; i++) {
+                    if (i < data.rating) starsHtml += '★';
+                    else starsHtml += '☆';
+                }
+                
+                const cardHtml = `
+                    <div class="testimonial-card glass-panel">
+                        <div class="user-info">
+                            <div class="avatar" style="background-color: ${data.color || '#ffb703'};">${data.initial}</div>
+                            <div class="user-details">
+                                <h4>${data.name}</h4>
+                                <span class="stars">${starsHtml}</span>
+                            </div>
+                        </div>
+                        <p class="review-text">"${data.text}"</p>
+                    </div>
+                `;
+                
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = cardHtml.trim();
+                const newCard = tempDiv.firstChild;
+                
+                // Insertar los de la DB al principio
+                track.insertBefore(newCard, track.children[0]);
+            });
+            
+            // Reiniciar motor del carrusel con los nuevos testimonios
+            initInfiniteCarousel('testimonios-container', 'testimonios-track', 'testimonios-prev', 'testimonios-next', 50);
+        }).catch(err => console.error("Error cargando testimonios:", err));
+    }
+
+    const starRating = document.getElementById('star-rating');
+    const reviewRatingInput = document.getElementById('review-rating');
+    
+    if (starRating) {
+        const stars = starRating.querySelectorAll('span');
+        
+        stars.forEach(star => {
+            // Hover effect
+            star.addEventListener('mouseover', function() {
+                const value = this.getAttribute('data-value');
+                stars.forEach(s => {
+                    if (s.getAttribute('data-value') <= value) {
+                        s.style.color = '#ffb703';
+                    } else {
+                        s.style.color = 'rgba(255, 255, 255, 0.2)';
+                    }
+                });
+            });
+            
+            // Mouseout effect
+            star.addEventListener('mouseout', function() {
+                const currentValue = reviewRatingInput.value;
+                stars.forEach(s => {
+                    if (s.getAttribute('data-value') <= currentValue) {
+                        s.style.color = '#ffb703';
+                    } else {
+                        s.style.color = 'rgba(255, 255, 255, 0.2)';
+                    }
+                });
+            });
+            
+            // Click effect
+            star.addEventListener('click', function() {
+                const value = this.getAttribute('data-value');
+                reviewRatingInput.value = value;
+                stars.forEach(s => s.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    }
+
+    const reviewForm = document.getElementById('review-form');
+    if (reviewForm) {
+        reviewForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('review-name').value;
+            const text = document.getElementById('review-text').value;
+            const rating = parseInt(document.getElementById('review-rating').value);
+            
+            const submitBtn = reviewForm.querySelector('.btn-submit-review');
+            const originalBtnText = submitBtn.innerText;
+            submitBtn.innerText = "Publicando...";
+            submitBtn.disabled = true;
+            
+            // Generar estrellas HTML
+            let starsHtml = '';
+            for (let i = 0; i < 5; i++) {
+                if (i < rating) starsHtml += '★';
+                else starsHtml += '☆';
+            }
+            
+            // Color aleatorio para el avatar
+            const colors = ['#ffb703', '#8b5cf6', '#219ebc', '#e63946', '#2a9d8f', '#e07a5f'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            const initial = name.charAt(0).toUpperCase();
+            
+            // Función para actualizar visualmente
+            const updateDOM = () => {
+                const cardHtml = `
+                    <div class="testimonial-card glass-panel">
+                        <div class="user-info">
+                            <div class="avatar" style="background-color: ${randomColor};">${initial}</div>
+                            <div class="user-details">
+                                <h4>${name}</h4>
+                                <span class="stars">${starsHtml}</span>
+                            </div>
+                        </div>
+                        <p class="review-text">"${text}"</p>
+                    </div>
+                `;
+                
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = cardHtml.trim();
+                const newCard = tempDiv.firstChild;
+                
+                const track = document.getElementById('testimonios-track');
+                
+                Array.from(track.children).forEach(el => {
+                    if (el.getAttribute('aria-hidden') === 'true') {
+                        track.removeChild(el);
+                    }
+                });
+                
+                track.insertBefore(newCard, track.children[0]);
+                initInfiniteCarousel('testimonios-container', 'testimonios-track', 'testimonios-prev', 'testimonios-next', 50);
+                
+                const successMsg = document.getElementById('review-success-msg');
+                successMsg.style.display = 'block';
+                reviewForm.reset();
+                reviewRatingInput.value = 5;
+                
+                const starsElements = starRating.querySelectorAll('span');
+                starsElements.forEach(s => s.style.color = '');
+                starsElements[4].style.color = '#ffb703';
+                
+                submitBtn.innerText = originalBtnText;
+                submitBtn.disabled = false;
+                
+                setTimeout(() => {
+                    successMsg.style.display = 'none';
+                }, 5000);
+            };
+
+            // Guardar en Firestore si está disponible
+            if (typeof firebase !== 'undefined' && db) {
+                db.collection('testimonios').add({
+                    name: name,
+                    text: text,
+                    rating: rating,
+                    color: randomColor,
+                    initial: initial,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                }).then(() => {
+                    updateDOM();
+                }).catch(err => {
+                    console.error("Error guardando en Firestore:", err);
+                    updateDOM(); // Actualizar visualmente de todos modos por fallback
+                });
+            } else {
+                updateDOM(); // Fallback si Firebase falla al cargar
+            }
+        });
+    }
 
 });
 

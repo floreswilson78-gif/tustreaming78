@@ -1,16 +1,16 @@
 /* Variables de diseño - Tema Oscuro Moderno */
 :root {
-    --bg-color: #0b0f19;
-    --text-main: #f0f2f5;
-    --text-muted: #a0aabf;
-    --primary-color: #8b5cf6;
-    --primary-glow: rgba(139, 92, 246, 0.5);
-    --secondary-color: #3b82f6;
+    --bg-color: #050d1a;
+    --text-main: #e8f4fd;
+    --text-muted: #8baac4;
+    --primary-color: #0ea5e9;
+    --primary-glow: rgba(14, 165, 233, 0.5);
+    --secondary-color: #6366f1;
     --whatsapp-color: #25D366;
     --telegram-color: #0088cc;
     
-    --glass-bg: rgba(255, 255, 255, 0.03);
-    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-bg: rgba(14, 165, 233, 0.04);
+    --glass-border: rgba(14, 165, 233, 0.12);
     
     --border-radius: 16px;
     --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -35,9 +35,9 @@ html {
 }
 
 body {
-    background-color: #0b0f19; /* Hardcoded para compatibilidad iOS */
-    color: #f0f2f5; /* Hardcoded para compatibilidad iOS */
-    -webkit-text-fill-color: #f0f2f5; /* Fuerza el color en Safari móvil */
+    background-color: #050d1a; /* Hardcoded para compatibilidad iOS */
+    color: #e8f4fd; /* Hardcoded para compatibilidad iOS */
+    -webkit-text-fill-color: #e8f4fd; /* Fuerza el color en Safari móvil */
     position: relative;
     line-height: 1.6;
 }
@@ -92,16 +92,16 @@ body {
 .loader-spinner {
     width: 40px;
     height: 40px;
-    border: 4px solid rgba(139, 92, 246, 0.2);
+    border: 4px solid rgba(14, 165, 233, 0.2);
     border-top: 4px solid var(--primary-color);
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
 
 @keyframes pulse {
-    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.7); }
-    70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(139, 92, 246, 0); }
-    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(139, 92, 246, 0); }
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(14, 165, 233, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(14, 165, 233, 0); }
 }
 
 @keyframes spin {
@@ -110,29 +110,31 @@ body {
 }
 
 .shape1 {
-    width: 400px;
-    height: 400px;
-    background: var(--primary-color);
-    top: -100px;
-    left: -100px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, #0ea5e9, #0369a1);
+    top: -150px;
+    left: -150px;
+    opacity: 0.35;
 }
 
 .shape2 {
-    width: 500px;
-    height: 500px;
-    background: var(--secondary-color);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, #6366f1, #4338ca);
     bottom: 20%;
-    right: -150px;
+    right: -200px;
     animation-delay: -5s;
+    opacity: 0.25;
 }
 
 .shape3 {
-    width: 300px;
-    height: 300px;
-    background: #e81cff;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, #06b6d4, #0284c7);
     top: 40%;
     left: 20%;
-    opacity: 0.3;
+    opacity: 0.15;
     animation-delay: -10s;
 }
 
@@ -217,8 +219,8 @@ header.scrolled {
 }
 
 @keyframes neonPulse {
-    0% { text-shadow: 0 0 5px rgba(139, 92, 246, 0.5), 0 0 10px rgba(139, 92, 246, 0.5); }
-    100% { text-shadow: 0 0 15px rgba(139, 92, 246, 1), 0 0 25px rgba(139, 92, 246, 0.8), 0 0 35px rgba(139, 92, 246, 0.5); }
+    0% { text-shadow: 0 0 5px rgba(14, 165, 233, 0.5), 0 0 10px rgba(14, 165, 233, 0.5); }
+    100% { text-shadow: 0 0 15px rgba(14, 165, 233, 1), 0 0 25px rgba(14, 165, 233, 0.8), 0 0 35px rgba(14, 165, 233, 0.5); }
 }
 
 .nav-links {
@@ -339,12 +341,12 @@ section {
 .btn-primary {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
-    box-shadow: 0 4px 15px var(--primary-glow);
+    box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4);
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.7);
+    box-shadow: 0 6px 20px rgba(14, 165, 233, 0.7);
 }
 
 .btn-secondary {
@@ -675,6 +677,7 @@ footer {
     right: 70px;
     background: white;
     color: var(--whatsapp-color);
+    -webkit-text-fill-color: var(--whatsapp-color);
     padding: 5px 10px;
     border-radius: 8px;
     font-size: 0.85rem;
@@ -816,7 +819,7 @@ footer {
     border-radius: 50px;
     z-index: 1;
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    box-shadow: 0 2px 10px rgba(139, 92, 246, 0.5);
+    box-shadow: 0 2px 10px rgba(14, 165, 233, 0.5);
 }
 .discount-badge {
     background: var(--primary-color);
@@ -840,12 +843,12 @@ footer {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     border-radius: inherit;
-    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
+    box-shadow: 0 0 0 0 rgba(14, 165, 233, 0);
     transition: var(--transition);
     z-index: -1;
 }
 .hover-glow:hover::before {
-    box-shadow: 0 0 20px 2px var(--primary-glow);
+    box-shadow: 0 0 20px 2px rgba(14, 165, 233, 0.3);
 }
 
 /* 4. Testimonios & Carruseles */
@@ -868,8 +871,8 @@ footer {
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background: rgba(139, 92, 246, 0.15);
-    border: 1.5px solid rgba(139, 92, 246, 0.4);
+    background: rgba(14, 165, 233, 0.1);
+    border: 1.5px solid rgba(14, 165, 233, 0.35);
     color: #fff;
     cursor: pointer;
     display: flex;
@@ -881,7 +884,7 @@ footer {
 }
 .carousel-btn:hover {
     background: var(--primary-color);
-    box-shadow: 0 0 16px var(--primary-glow);
+    box-shadow: 0 0 16px rgba(14, 165, 233, 0.6);
     transform: translateY(-50%) scale(1.12);
 }
 .carousel-btn.prev { left: -22px; }
@@ -1006,6 +1009,84 @@ footer {
 }
 
 
+/* Formulario de Reseñas */
+.review-form-container {
+    max-width: 600px;
+    margin: 3rem auto 0;
+    padding: 2.5rem;
+    text-align: center;
+}
+.review-form-container h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+}
+.review-form-container p {
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+.form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    color: var(--text-main);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background: rgba(14, 165, 233, 0.08);
+    box-shadow: 0 0 15px rgba(14, 165, 233, 0.2);
+}
+.rating-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.rating-group label {
+    font-weight: 600;
+    color: var(--text-main);
+}
+.star-rating {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    cursor: pointer;
+}
+.star-rating span {
+    font-size: 1.8rem;
+    color: rgba(255, 255, 255, 0.2);
+    transition: color 0.2s;
+}
+.star-rating span.active,
+.star-rating span:hover,
+.star-rating span:hover ~ span { /* CSS trick for right-to-left hover if we reverse, but we'll use JS */
+    color: #ffb703;
+}
+.btn-submit-review {
+    width: 100%;
+    margin-top: 1rem;
+}
+.success-msg {
+    margin-top: 1.5rem;
+    padding: 12px;
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: #10b981;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
 /* Responsividad */
 @media (max-width: 900px) {
     .hero {
@@ -1046,18 +1127,18 @@ footer {
 
     /* Forzar colores en secciones para todos los móviles */
     .section-title {
-        color: #ffffff !important;
-        -webkit-text-fill-color: #ffffff !important;
+        color: #e8f4fd !important;
+        -webkit-text-fill-color: #e8f4fd !important;
     }
 
     .section-subtitle {
-        color: #a0aabf !important;
-        -webkit-text-fill-color: #a0aabf !important;
+        color: #8baac4 !important;
+        -webkit-text-fill-color: #8baac4 !important;
     }
 
     p, li, span:not(.text-gradient):not(.badge):not(.gallery-tag) {
-        color: #f0f2f5;
-        -webkit-text-fill-color: #f0f2f5;
+        color: #e8f4fd;
+        -webkit-text-fill-color: #e8f4fd;
     }
 }
 
@@ -1155,6 +1236,7 @@ footer {
     right: 70px;
     background: white;
     color: var(--telegram-color);
+    -webkit-text-fill-color: var(--telegram-color);
     padding: 5px 10px;
     border-radius: 8px;
     font-size: 0.85rem;
