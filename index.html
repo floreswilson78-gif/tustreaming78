@@ -4,9 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tustreaming78 | Servicios de Streaming Premium</title>
+    <title>TuStreaming78 | Entretenimiento sin complicaciones</title>
     <meta name="description"
-        content="Tustreaming78 - Tu tienda virtual para las mejores plataformas de streaming. Rápido, seguro y al mejor precio.">
+        content="Planes de streaming, activación rápida y atención personalizada. Elige tu plataforma y disfruta sin vueltas.">
+    <meta name="theme-color" content="#080b12">
+    <meta property="og:title" content="TuStreaming78 | Entretenimiento sin complicaciones">
+    <meta property="og:description" content="Elige tu plataforma, activa tu plan y disfruta. Atención personalizada por WhatsApp.">
+    <meta property="og:type" content="website">
 
     <!-- ══ SEGURIDAD ══════════════════════════════════════════════════════ -->
     <!-- Política de referrer: no filtrar información de origen al navegar a externos -->
@@ -26,9 +30,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="redesign.css">
 </head>
 
-<body>
+<body class="editorial-theme">
 
     <!-- Cursor Personalizado -->
     <div class="custom-cursor"></div>
@@ -53,26 +58,30 @@
     <header>
         <nav class="navbar">
             <div class="logo">
-                <img src="logo.jpeg" alt="Tustreaming78 Logo" class="logo-img">
+                <img src="logo.png" alt="Logo de TuStreaming78" class="brand-logo">
                 <span class="logo-text">TuStreaming<span class="highlight">78</span></span>
             </div>
-            <ul class="nav-links">
+            <button class="menu-toggle" type="button" aria-label="Abrir menú de navegación" aria-expanded="false"
+                aria-controls="main-navigation">
+                <span></span><span></span>
+            </button>
+            <ul class="nav-links" id="main-navigation">
                 <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#entregas">Entregas</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#servicios">Catálogo</a></li>
+                <li><a href="#combos">Combos</a></li>
+                <li><a href="#entregas">Confianza</a></li>
+                <li><a href="#faq">FAQ</a></li>
             </ul>
+            <a href="https://w.app/5qpzx0" target="_blank" rel="noopener noreferrer" class="nav-cta">Hablar ahora</a>
         </nav>
     </header>
 
     <main>
         <section id="inicio" class="hero">
             <div class="hero-content">
-                <span class="badge">Disfruta sin límites</span>
-                <h1>El Mejor Entretenimiento <br>en <span class="text-gradient typing-text"></span><span
-                        class="typing-cursor">|</span></h1>
-                <p>Accede a las plataformas de streaming más populares con los mejores precios del mercado. Activación
-                    rápida y soporte 24/7.</p>
+                <span class="badge">ENTRETENIMIENTO, A TU RITMO</span>
+                <h1>Todo lo que quieres<br><span class="text-gradient">ver, escuchar y vivir.</span></h1>
+                <p>Planes de streaming seleccionados para ti, con activación ágil y una atención cercana cuando la necesites.</p>
                 <div class="hero-buttons">
                     <a href="#servicios" class="btn btn-primary">Ver Catálogo</a>
                     <a href="https://w.app/5qpzx0" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
@@ -83,29 +92,42 @@
                         Escribir ahora
                     </a>
                 </div>
+                <ul class="hero-proof" aria-label="Ventajas del servicio">
+                    <li>Activación rápida</li>
+                    <li>Soporte personalizado</li>
+                    <li>Planes flexibles</li>
+                </ul>
             </div>
             <div class="hero-image">
-                <img src="hero-image.png" alt="Streaming Entertainment" class="hero-illustration">
+                <img src="ee.png" alt="Conversación de soporte para una renovación de streaming" class="hero-illustration">
             </div>
         </section>
 
         <section id="servicios" class="store">
-            <h2 class="section-title">Nuestros Servicios</h2>
-            <p class="section-subtitle">Elige tu plataforma favorita y empieza a disfrutar hoy mismo.</p>
-
-            <div class="pricing-tabs">
-                <div class="pricing-tab active" data-period="monthly">1 Mes</div>
-                <div class="pricing-tab" data-period="quarterly">3 Meses <span class="discount-badge">15% OFF</span>
-                </div>
-                <div class="pricing-tab" data-period="semiannual">6 Meses <span class="discount-badge">30% OFF</span>
-                </div>
-                <div class="pricing-tab-indicator"></div>
+            <div class="scroll-scene scene-cinema" aria-hidden="true">
+                <span class="scene-orb"></span>
+                <span class="scene-character explorer"></span>
+                <span class="scene-character detective"></span>
             </div>
+            <span class="eyebrow">ELIGE TU EXPERIENCIA</span>
+            <h2 class="section-title">Tu próxima historia<br>empieza aquí.</h2>
+            <p class="section-subtitle">Elige tu plataforma favorita y encuentra el plan que mejor encaja contigo.</p>
 
-            <div class="filter-container">
-                <button class="filter-btn active" data-filter="all">Todos</button>
-                <button class="filter-btn" data-filter="cine">Cine y Series</button>
-                <button class="filter-btn" data-filter="musica">Música</button>
+            <div class="catalog-toolbar">
+                <div class="pricing-tabs">
+                    <div class="pricing-tab active" data-period="monthly">1 Mes</div>
+                    <div class="pricing-tab" data-period="quarterly">3 Meses <span class="discount-badge">15% OFF</span>
+                    </div>
+                    <div class="pricing-tab" data-period="semiannual">6 Meses <span class="discount-badge">30% OFF</span>
+                    </div>
+                    <div class="pricing-tab-indicator"></div>
+                </div>
+
+                <div class="filter-container">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="cine">Cine y Series</button>
+                    <button class="filter-btn" data-filter="musica">Música</button>
+                </div>
             </div>
 
             <div class="cards-grid" id="services-grid">
@@ -202,7 +224,7 @@
                         <ul>
                             <li>✓ Todo HBO y más</li>
                             <li>✓ Estrenos de cine</li>
-                            <li>✓ Perfil Personalizado>
+                            <li>✓ Perfil personalizado</li>
                         </ul>
                         <a href="https://w.app/5qpzx0" class="btn btn-outline" target="_blank"
                             rel="noopener noreferrer">Comprar ahora</a>
@@ -261,8 +283,15 @@
         </section>
 
         <section id="combos" class="store combos-section">
-            <h2 class="section-title">Combos Especiales</h2>
-            <p class="section-subtitle">Lleva más plataformas pagando menos. ¡Ahorro garantizado!</p>
+            <div class="scroll-scene scene-anime" aria-hidden="true">
+                <span class="scene-orb"></span>
+                <span class="scene-character adventurer"></span>
+                <span class="scene-spark spark-one"></span>
+                <span class="scene-spark spark-two"></span>
+            </div>
+            <span class="eyebrow">MÁS PARA DISFRUTAR</span>
+            <h2 class="section-title">Combos pensados<br>para cada momento.</h2>
+            <p class="section-subtitle">Reúne tus plataformas favoritas en un solo plan y disfruta más.</p>
 
             <div class="carousel-wrapper">
                 <button class="carousel-btn prev" id="combos-prev" aria-label="Anterior combo">
@@ -360,8 +389,14 @@
         </section>
 
         <section id="testimonios" class="testimonials">
-            <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-            <p class="section-subtitle">Únete a cientos de usuarios satisfechos.</p>
+            <div class="scroll-scene scene-family" aria-hidden="true">
+                <span class="scene-orb"></span>
+                <span class="scene-character viewer-one"></span>
+                <span class="scene-character viewer-two"></span>
+            </div>
+            <span class="eyebrow">EXPERIENCIAS REALES</span>
+            <h2 class="section-title">La confianza se<br>construye con hechos.</h2>
+            <p class="section-subtitle">Opiniones de personas que ya disfrutan sus plataformas con nosotros.</p>
 
             <div class="carousel-wrapper">
                 <button class="carousel-btn prev" id="testimonios-prev" aria-label="Anterior testimonio">
@@ -481,8 +516,9 @@
         </section>
 
         <section id="entregas" class="blog-entregas">
-            <h2 class="section-title">Transparencia y Confianza</h2>
-            <p class="section-subtitle">Nuestros clientes avalan la calidad y rapidez de nuestro servicio.</p>
+            <span class="eyebrow">ENTREGAS VERIFICABLES</span>
+            <h2 class="section-title">Claro desde el<br>primer mensaje.</h2>
+            <p class="section-subtitle">Una muestra de entregas y renovaciones gestionadas con atención.</p>
 
             <div class="carousel-wrapper">
                 <button class="carousel-btn prev" id="galeria-prev" aria-label="Anterior captura">
@@ -498,7 +534,7 @@
                         <div class="gallery-item-wrapper">
                             <div class="gallery-item glass-panel">
                                 <div class="gallery-img-container">
-                                    <img src="cap1.jpg?v=3" alt="Captura de chat con cliente satisfecho"
+                                    <img src="w.png" alt="Captura de chat con cliente satisfecho"
                                         class="gallery-img">
                                     <div class="gallery-overlay">
                                         <span class="gallery-tag new-client">Cliente Nuevo</span>
@@ -521,7 +557,7 @@
                         <div class="gallery-item-wrapper">
                             <div class="gallery-item glass-panel">
                                 <div class="gallery-img-container">
-                                    <img src="cap2.jpg?v=3" alt="Captura de chat de renovación" class="gallery-img">
+                                    <img src="ee.png" alt="Captura de chat de renovación" class="gallery-img">
                                     <div class="gallery-overlay">
                                         <span class="gallery-tag renew">Renovación</span>
                                         <div class="zoom-icon">
@@ -543,7 +579,7 @@
                         <div class="gallery-item-wrapper">
                             <div class="gallery-item glass-panel">
                                 <div class="gallery-img-container">
-                                    <img src="cap3.jpg?v=3" alt="Captura de chat de combo" class="gallery-img">
+                                    <img src="33.png" alt="Captura de chat de combo" class="gallery-img">
                                     <div class="gallery-overlay">
                                         <span class="gallery-tag combo-sale">Combo Vendido</span>
                                         <div class="zoom-icon">
@@ -581,8 +617,9 @@
         </div>
 
         <section id="faq" class="faq-section">
-            <h2 class="section-title">Preguntas Frecuentes</h2>
-            <p class="section-subtitle">Resolvemos tus dudas al instante.</p>
+            <span class="eyebrow">ANTES DE EMPEZAR</span>
+            <h2 class="section-title">Lo esencial,<br>sin letra pequeña.</h2>
+            <p class="section-subtitle">Respondemos las dudas más frecuentes antes de que elijas tu plan.</p>
 
             <div class="faq-container">
                 <div class="faq-item glass-panel">
@@ -641,11 +678,11 @@
             </div>
         </section>
 
-        <section class="banner telegram-banner glass-panel">
+        <section class="banner telegram-banner glass-panel" aria-labelledby="contacto-title">
             <div class="banner-content">
-                <h2>¿Buscas respuestas rápidas?</h2>
-                <p>Usa nuestro bot automatizado de Telegram para consultar disponibilidad, precios y realizar pedidos al
-                    instante.</p>
+                <span class="eyebrow">¿NECESITAS AYUDA?</span>
+                <h2 id="contacto-title">Tu plan ideal está<br>a un mensaje.</h2>
+                <p>Consulta disponibilidad, precios o compatibilidad con nuestro bot de Telegram.</p>
                 <a href="https://t.me/Tustreaming78_bot" target="_blank" rel="noopener noreferrer"
                     class="btn btn-telegram">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -659,13 +696,29 @@
     </main>
 
     <footer id="contacto">
+        <div class="footer-collage" aria-hidden="true">
+            <span class="collage-tile tile-series">SERIES</span>
+            <span class="collage-tile tile-cine">CINE</span>
+            <span class="collage-tile tile-music">MÚSICA</span>
+            <span class="collage-tile tile-anime">ANIME</span>
+            <span class="collage-tile tile-live">EN VIVO</span>
+            <span class="collage-tile tile-4k">4K</span>
+            <span class="collage-orb"></span>
+        </div>
         <div class="footer-content">
             <div class="footer-logo">
-                <img src="logo.jpeg" alt="Tustreaming78 Logo" class="logo-img">
+                <img src="logo.png" alt="Logo de TuStreaming78" class="brand-logo">
                 <div class="logo-text">TuStreaming<span class="highlight">78</span></div>
             </div>
-            <p>Tu entretenimiento garantizado con el mejor soporte.</p>
-            <p class="copyright">© 2026 Tustreaming78. Todos los derechos reservados.</p>
+            <div class="footer-links">
+                <a href="#servicios">Catálogo</a>
+                <a href="#combos">Combos</a>
+                <a href="#faq">Preguntas frecuentes</a>
+                <a href="https://w.app/5qpzx0" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            </div>
+            <p>Entretenimiento para disfrutar a tu ritmo, con atención personalizada.</p>
+            <p class="footer-note">Consulta condiciones, disponibilidad y compatibilidad antes de realizar tu pedido.</p>
+            <p class="copyright">© 2026 TuStreaming78. Todos los derechos reservados.</p>
         </div>
     </footer>
 
@@ -707,7 +760,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore-compat.js"></script>
 
-    <script src="script.js?v=4"></script>
+    <script src="redesign.js"></script>
 </body>
 
 </html>
